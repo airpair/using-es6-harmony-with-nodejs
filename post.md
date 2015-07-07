@@ -20,7 +20,7 @@ Thank god, no more index and length based looping in my code.
 
 ### 2.2 Destructuring assignment
 
-Destructuring assigned allows you to pull out attributes on an object ad assigned them to scope level variables in one line. It's especially handy for pulling out separate functions & values from an imported object.
+Destructuring assigned allows you to pull out attributes on an object and assign them to scope level variables in one line. It's especially handy for pulling out separate functions & values from an imported object.
 
 <!--?prettify lang=javascript linenums=false?-->    
     
