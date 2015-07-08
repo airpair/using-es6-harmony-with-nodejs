@@ -20,7 +20,7 @@ Thank god, no more index and length based looping in my code.
 
 ### 2.2 Destructuring assignment
 
-Destructuring assigned allows you to pull out attributes on an object ad assigned them to scope level variables in one line. It's especially handy for pulling out separate functions & values from an imported object.
+Destructuring assigment allows you to pull out attributes of an object and assign them to scope level variables in one line. It's especially handy for pulling out separate functions & values from an imported object.
 
 <!--?prettify lang=javascript linenums=false?-->    
     
@@ -53,7 +53,7 @@ Arrow function in es6 are not as Cool CoffeeScript, but it's better than nothing
 Braces are required in multi-line functions because unlike CoffeeScript, JavaScript does not care about indentation.
 
 ### 3 ES6 Module Pattern
-As folks starting building large scale JavaScript apps, it became necessary to keep code organized and stop variable from conflicting with each other. This need became amplified when JavaScript matured to the point where apps usually integrating other people's code. `RequireJS` and `CommonJS` module patterns rose up to power most web apps and node respectively. ES6 is the first version of JavaScript that comes with it's own native module loading pattern and syntax. It's definitely one of the biggest features of ES6.
+As folks started building large-scale JavaScript apps, it became necessary to keep code organized and stop variables from conflicting with each other. This need became amplified when JavaScript matured to the point where apps usually integrated other people's code. `RequireJS` and `CommonJS` module patterns rose up to power most web apps and node respectively. ES6 is the first version of JavaScript that comes with its own native module loading pattern and syntax. It's definitely one of the biggest features of ES6.
 
 <!--?prettify lang=javascript linenums=false?-->
 
