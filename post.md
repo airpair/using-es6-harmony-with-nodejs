@@ -1,8 +1,10 @@
 Synopsis
-> ES6 is the latest version of JavaScript. Coming from a love for CoffeScript
-its new features which are similar but a bit less radical than many Coffe features have been enough for me to get back into normal JavaScript. This
-post covers how to setup EST for anyone that wants to user ECMAScript6 with NodeJS as well as exploring some of the features with  a perspective
-of coming back from Coffee.
+> ES6 is the latest version of JavaScript. Coming from a love for `CoffeeScript` 
+its new features which are similar but a bit less radical than many Coffee 
+features have been enough for me to get back into normal JS. This
+post covers how to setup ES6 for anyone that wants to user ECMAScript6 with 
+NodeJS as well as exploring some of the features from the perspective of a
+recovering Coffee junkie.
 
 ** \* This post was originally published Oct 2014, has been slightly updated
 in Aug 2015 and due around Nov for a major opinionated re-write exploring different ES6 patterns developed over the last year. **
