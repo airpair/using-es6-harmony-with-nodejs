@@ -1,58 +1,83 @@
-## 1 Why use ES6 Harmony
+Synopsis
+> ES6 is the latest version of JavaScript. Coming from a love for CoffeScript
+its new features which are similar but a bit less radical than many Coffe features have been enough for me to get back into normal JavaScript. This
+post covers how to setup EST for anyone that wants to user ECMAScript6 with NodeJS as well as exploring some of the features with  a perspective
+of coming back from Coffee.
+
+** \* This post was originally published Oct 2014, has been slightly updated
+in Aug 2015 and due around Nov for a major opinionated re-write exploring different ES6 patterns developed over the last year. **
+
+
+## Why use ES6 Harmony?
 ES6 is short for ECMAScript6, which is the blue print for upcoming version of JavaScript. As a language, JavaScript is a double edged sword. It can be freakingly ugly, but at the same time extremely flexible and powerful. JS code is often criticized for having un-necessary redundancy. Thus abstractions like `CoffeeScript` and `TypeScript` became very popular. I personally love writing in CoffeeScript, but CoffeeScript threatens to fragment the JavaScript community, its code bases and package eco-system. So the majority of JavaScript influencers frown upon abstractions and instead opt to patiently help make JavaScript get better. 
 
 ES6 (code named Harmony) introduces some new JavaScipt language features similar to CoffeeScript. Cleaner iterators (loop syntax), arrow functions, de-structuring assignment and even classes to name a few.
 
-## 2 ES6 features that excite me
+## ES6 features that excite me
 
-I was immediately jazzed to regain the following similar CoffeeScript features within the first hour of having Harmony running:
+I was immediately jazzed to regain the following similarish CoffeeScript features within the first hour of having Harmony running:
 
-### 2.1 Cleaner iterator syntax
+### Cleaner iterator syntax
 
-Thank god, no more index and length based looping in my code.
+Thank god, no more index and length based looping in my code!
 
-<!--?prettify lang=javascript linenums=false?-->
+````javascript
+// es6 set style iterator syntax
+for (var post of posts) {
+	console.log(post.url);
+}
+````
 
-    // es6 set style iterator syntax
-    for (var post of posts) {
-    	console.log(post.url);
-    }
+Careful of the `of` keyword. I frequently after a year still type `in`
+and wonder what is going wrong with my code.
 
-### 2.2 Destructuring assignment
+### Destructuring assignment
 
-Destructuring assigment allows you to pull out attributes of an object and assign them to scope level variables in one line. It's especially handy for pulling out separate functions & values from an imported object.
+Destructuring assigment allows you to pull out attributes of an object and assign them to scope level variables in one line.
 
-<!--?prettify lang=javascript linenums=false?-->    
-    
-    var post = {
-    	url: '/first-post',
-    	title: 'My First Post'
-    }
+````javascript
+var post = {
+  url: '/first-post',
+  title: 'My First Post'
+}
 
-    // es6 de-structuring assignment
-    // Similar to CoffeeScript, but important to use the var
-    var {url,title} = post;
-    
-    console.log('url', url, 'post', post);
+// es6 de-structuring assignment
+// Similar to CoffeeScript, but important to use the var
+var {url,title} = post;
 
-### 2.3 Arrow functions
-Arrow function in es6 are not as Cool CoffeeScript, but it's better than nothing! There is only a fat arrow function definition (`=>`) and it does not do magic with the function context (`this` variable) like in CoffeeScript. CoffeeScript `(arg) ->` == es6 `(arg) =>`
+console.log('url', url, 'post', post);
+// => 'url', '/first-post', 'post', { url: '/first-post',title: 'My First Post' }
+````
 
-<!--?prettify lang=javascript linenums=false?-->
+ES6 Destructuring assigment is especially handy for pulling out separate functions & values from an imported object, but be careful the ES6 version
+is a bit less forgiving than CoffeeScript which hadles undefined attributes
+silently, where ES6 will throw an error.
 
-    // single line arrow functions do not require braces
-    app.get('posts', (req, res) => res.render('/posts.html') );
+### Arrow functions
+Arrow function in es6 are quite differnt to CoffeeScript. When you first leave Coffee they feel like a huge setback, but they have their own interesting usages when you get the hang of thenm! 
 
-    // multi line arrow functions require braces
-    app.get('posts', (req, res) => {
-        console.log('in post route');
-        res.render('/posts.html');
-      }
-    );
+There is only a fat arrow function definition (`=>`) which has very differnt behavior for from the CoffeScript magic with the function context (`this` variable). 
 
-Braces are required in multi-line functions because unlike CoffeeScript, JavaScript does not care about indentation.
+Also there are some nuances around syntax sugar for fat arrow functions.
+<!--CoffeeScript `(arg) ->` == es6 `(arg) =>`-->
 
-### 3 ES6 Module Pattern
+````javascript
+// single line arrow functions do not require braces or the "return" keyword
+app.get('posts', (req, res) => res.render('/posts.html') );
+
+// multi line arrow functions require braces
+app.get('posts', (req, res) => {
+    console.log('in post route');
+    res.render('/posts.html');
+  }
+);
+````
+
+Braces are required in multi-line functions because unlike CoffeeScript, JavaScript does not care about indentation. Be really careful when you
+change a one line function to a multi-line to reinclude the the `return`
+keyword.
+
+### ES6 Module Pattern
 As folks started building large-scale JavaScript apps, it became necessary to keep code organized and stop variables from conflicting with each other. This need became amplified when JavaScript matured to the point where apps usually integrated other people's code. `RequireJS` and `CommonJS` module patterns rose up to power most web apps and node respectively. ES6 is the first version of JavaScript that comes with its own native module loading pattern and syntax. It's definitely one of the biggest features of ES6.
 
 <!--?prettify lang=javascript linenums=false?-->
@@ -88,10 +113,24 @@ As folks started building large-scale JavaScript apps, it became necessary to ke
     blog.initialize();
     blog.renderPost('hello-world');
 
-## 4 Setting up ES6 with NodeJS
+  
+- - - 
+> **Update: Aug, 2015**  
+I really didn't like ES6 Modules and ended up converting the whole of
+airpair.com back tgo CommonJS style. I'm looking discussing why. The main
+issues were:
+1. We use browserify on the front end without including es6 source mappings.
+CommonJS meant we could reuse code more easily on the front-end and backend.
+2. Forcing all imports to happen on app load (since import must be used up
+the top) meant slow app load times. AirPair uses LOTS of lazy loading of
+JS files to shave about 8 seconds of app start time.
+- - -
+
+
+## Setting up ES6 with NodeJS (in late 2014)
 Setting up es6 with node is not as clean as I would have liked. We might be a little bit early adopting Harmony, but our engineering culture is ok with being on the bleeding edge with mainstream technologies. There is a flag you can pass node like `node index.js --harmony` but it only works with the current dev branch of nodejs and which explains why I never got it to work.
 
-### 4.1 es6-module-loader package
+### es6-module-loader package
 To get es6 working in nodejs, we can install a package `npm i es6-module-loader -S` and wrap our index.js file in a 'bootstrap' file that imports our app using the es6 module pattern. From there all code inside the import supports es6 features.
 
 <!--?prettify lang=javascript linenums=false?-->
@@ -112,7 +151,7 @@ Once we setup our `boostrap.js` file, we no longer start our app with `node inde
 
     node boostrap.js
 
-### 4.2 appdir vs __dirname
+### appdir vs __dirname
 The ES6 module system mixes up the normal `__dirname` node variable, so you can't gracefully mix and match ES6 styles imports with require syntax and use consistent relative paths. To get around this Uri showed me a solution to pass in the __dirname value from the bootstrap code (above) and add it (in index.js) onto our express app object for later reference like so:
 
 <!--?prettify lang=javascript linenums=false?-->
@@ -127,7 +166,60 @@ The ES6 module system mixes up the normal `__dirname` node variable, so you can'
 	    ...
     }
 
+## Setting up ES6 with NodeJS (in Q1 2015)
+- - -
+Update Aug 2015
+> ### ES6 `traceur` compiler = a better alternative
+`es6-module-loader` was kind of annoying with mixing module styles, 
+the appdir vs __dirname annoyance and was not compatible with running 
+CoffeeScript specs from Mocha.
+Luckily a better solution came my way using the `traceur` and `traceur-source-maps` packages to "bootstrap" any modules called after
+setting up es6 source maps to interpret es6 syntax.
+## Bootstrapping es6 on NodeJS with traceur
+The AirPair project stucture looks partially like:
+````
+/server
+- /util
+-- setup.js
+/test
+- /server
+-- bootstrap.coffee
+- bootstrap.js
+bootstrap.js
+app.js
+````
+You'll notice, 3 differnt "bootstrap" files. Each of these files runs the
+app with a different configuration / mode. 
+1. `mocha /test/server/bootstrap.coffee` runs the app in test mode outputting 
+mocha reporter results to the terminal. When mocha is finished the process
+dies.
+2. `node /test/bootstrap.js` runs the app in test mode, but as a node process
+you can hit via your browser to use the site with test config (good for things
+like oauth UX debugging)
+3. `node bootstrap.js` runs the app in dev mode if local or prod if on heroku.
+All 3 contexts use the same `/server/util/setup.js` file which looks like this:
+```` javascript
+var colors  = require('colors')
+var traceur = require('traceur')
+require('traceur-source-maps').install(traceur)
+traceur.require.makeDefault(function (filePath) {
+  return !~filePath.indexOf('node_modules')
+})
+````
+Basically setup.js can't have es6 syntax, but once called, everything
+required from `bootstrap` can.  
+````javascript  
+// root bootstrap.js file
+var setup = require('./server/util/setup')
+require('./app').run()  // fire up express and everything else
+````
+- - -
 
-### 5 Summary
 
-I was really keen to embrace ECMAScript6. I'd had fooled around trying to set it up myself for 30 minutes and got nowhere. Uri Shaked helped me understand the bootstrapping process in 10 minutes. I know it would have taken me more than an hour. With these cutting edge scenarios, it feels great to leverage someone else's fiddling time to save my own. It was also really fun to feel my expert enjoying what we were setting up just as much as I did.
+### ECMAScript6 is a great start!
+
+I was super happy to be on the path to a nicer JavaScript. There were lots
+of things I learned over the last 12 months that I'm looking forward to
+sharing in a revision of this post soon. I still like writing my tests
+in CoffeeScript thoug :). There are some good middle grounds that work
+across both languages that can help context switching quite manageable.
