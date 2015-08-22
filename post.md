@@ -88,13 +88,12 @@ As folks started building large-scale JavaScript apps, it became necessary to ke
     	renderPost: function(postName) { ... }
     }
 
-<!--?prettify lang=javascript linenums=false?-->
-
-    // node style module import pattern
-    var blog = require('./blog');
-    blog.initialize();
-    blog.renderPost('hello-world');
----
+````javascript
+// node style module import pattern
+var blog = require('./blog');
+blog.initialize();
+blog.display('hello-world');
+````
 <!--?prettify lang=javascript linenums=false?-->
 
     // es6 style module export pattern
@@ -127,7 +126,7 @@ JS files to shave about 8 seconds of app start time.
 - - -
 
 
-## Setting up ES6 with NodeJS (in late 2014)
+## Setting up ES6 w NodeJS Option 1
 Setting up es6 with node is not as clean as I would have liked. We might be a little bit early adopting Harmony, but our engineering culture is ok with being on the bleeding edge with mainstream technologies. There is a flag you can pass node like `node index.js --harmony` but it only works with the current dev branch of nodejs and which explains why I never got it to work.
 
 ### es6-module-loader package
@@ -166,7 +165,7 @@ The ES6 module system mixes up the normal `__dirname` node variable, so you can'
 	    ...
     }
 
-## Setting up ES6 with NodeJS (in Q1 2015)
+## Setting up ES6 w NodeJS Option 2
 - - -
 Update Aug 2015
 > ### ES6 `traceur` compiler = a better alternative
@@ -175,7 +174,7 @@ the appdir vs __dirname annoyance and was not compatible with running
 CoffeeScript specs from Mocha.
 Luckily a better solution came my way using the `traceur` and `traceur-source-maps` packages to "bootstrap" any modules called after
 setting up es6 source maps to interpret es6 syntax.
-## Bootstrapping es6 on NodeJS with traceur
+### es6 on Node with traceur
 The AirPair project stucture looks partially like:
 ````
 /server
