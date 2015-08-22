@@ -1,17 +1,18 @@
 Synopsis
-> ES6 is the latest version of JavaScript. Coming from a love for `CoffeeScript` 
-its new features which are similar but a bit less radical than many Coffee 
-features have been enough for me to get back into normal JS. This
-post covers how to setup ES6 for anyone that wants to user ECMAScript6 with 
-NodeJS as well as exploring some of the features from the perspective of a
-recovering Coffee junkie.
+> ES6 is the latest version of JavaScript. Coming from a love for 
+`CoffeeScript`, many of its new features which are similar but a bit less 
+radical than Coffee have been enough for me to get back into normal JS. This
+post covers how to setup ES6 for anyone that wants to use ECMAScript6 with 
+NodeJS and explorwa a few of the features I was initially excited about, from 
+the perspective of a recovering Coffee junkie.
 
-** \* This post was originally published Oct 2014, has been slightly updated
-in Aug 2015 and due around Nov for a major opinionated re-write exploring different ES6 patterns developed over the last year. **
+** \* This post was originally published Oct 2014, was slightly updated
+Aug 2015 and is due round Nov/Dec for a major opinionated re-write exploring 
+ES6 patterns developed while building out airpair.com over the last year. **
 
 
 ## Why use ES6 Harmony?
-ES6 is short for ECMAScript6, which is the blue print for upcoming version of JavaScript. As a language, JavaScript is a double edged sword. It can be freakingly ugly, but at the same time extremely flexible and powerful. JS code is often criticized for having un-necessary redundancy. Thus abstractions like `CoffeeScript` and `TypeScript` became very popular. I personally love writing in CoffeeScript, but CoffeeScript threatens to fragment the JavaScript community, its code bases and package eco-system. So the majority of JavaScript influencers frown upon abstractions and instead opt to patiently help make JavaScript get better. 
+ES6 is short for ECMAScript6, which is the blue print for the upcoming version of JavaScript. As a language, JavaScript is a double edged sword. It can be freakingly ugly, but at the same time extremely flexible and powerful. JS code is often criticized for having un-necessary redundancy. Thus abstractions like `CoffeeScript` and `TypeScript` became very popular. I personally love writing in CoffeeScript, but CoffeeScript threatens to fragment the JavaScript community, its code bases and package eco-system. So the majority of JavaScript influencers frown upon abstractions and instead opt to patiently help make JavaScript get better. 
 
 ES6 (code named Harmony) introduces some new JavaScipt language features similar to CoffeeScript. Cleaner iterators (loop syntax), arrow functions, de-structuring assignment and even classes to name a few.
 
