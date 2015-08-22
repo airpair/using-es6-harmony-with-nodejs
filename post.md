@@ -3,7 +3,7 @@ Synopsis
 `CoffeeScript`, many of its new features which are similar but a bit less 
 radical than Coffee have been enough for me to get back into normal JS. This
 post covers how to setup ES6 for anyone that wants to use ECMAScript6 with 
-NodeJS and explorwa a few of the features I was initially excited about, from 
+NodeJS and explores a few of the features I was initially excited about, from 
 the perspective of a recovering Coffee junkie.
 
 ** \* This post was originally published Oct 2014, was slightly updated
@@ -12,7 +12,7 @@ ES6 patterns developed while building out airpair.com over the last year. **
 
 
 ## Why use ES6 Harmony?
-ES6 is short for ECMAScript6, which is the blue print for the upcoming version of JavaScript. As a language, JavaScript is a double edged sword. It can be freakingly ugly, but at the same time extremely flexible and powerful. JS code is often criticized for having un-necessary redundancy. Thus abstractions like `CoffeeScript` and `TypeScript` became very popular. I personally love writing in CoffeeScript, but CoffeeScript threatens to fragment the JavaScript community, its code bases and package eco-system. So the majority of JavaScript influencers frown upon abstractions and instead opt to patiently help make JavaScript get better. 
+ES6 is short for ECMAScript6, which is the blueprint for the upcoming version of JavaScript. As a language, JavaScript is a double edged sword. It can be freakingly ugly, but at the same time extremely flexible and powerful. JS code is often criticized for having unnecessary redundancy. Thus abstractions like `CoffeeScript` and `TypeScript` became very popular. I personally love writing in CoffeeScript, but CoffeeScript threatens to fragment the JavaScript community, its code bases and package eco-system. So the majority of JavaScript influencers frown upon abstractions and instead opt to patiently help make JavaScript get better. 
 
 ES6 (code named Harmony) introduces some new JavaScipt language features similar to CoffeeScript. Cleaner iterators (loop syntax), arrow functions, de-structuring assignment and even classes to name a few.
 
@@ -36,7 +36,7 @@ and wonder what is going wrong with my code.
 
 ### Destructuring assignment
 
-Destructuring assigment allows you to pull out attributes of an object and assign them to scope level variables in one line.
+Destructuring assignment allows you to pull out attributes of an object and assign them to scope level variables in one line.
 
 ````javascript
 var post = {
@@ -52,14 +52,14 @@ console.log('url', url, 'post', post);
 // => 'url', '/first-post', 'post', { url: '/first-post',title: 'My First Post' }
 ````
 
-ES6 Destructuring assigment is especially handy for pulling out separate functions & values from an imported object, but be careful the ES6 version
-is a bit less forgiving than CoffeeScript which hadles undefined attributes
+ES6 Destructuring assignment is especially handy for pulling out separate functions & values from an imported object, but be careful the ES6 version
+is a bit less forgiving than CoffeeScript which handles undefined attributes
 silently, where ES6 will throw an error.
 
 ### Arrow functions
-Arrow function in es6 are quite differnt to CoffeeScript. When you first leave Coffee they feel like a huge setback, but they have their own interesting usages when you get the hang of thenm! 
+Arrow function in es6 are quite different to CoffeeScript. When you first leave Coffee they feel like a huge setback, but they have their own interesting usages when you get the hang of them! 
 
-There is only a fat arrow function definition (`=>`) which has very differnt behavior for from the CoffeScript magic with the function context (`this` variable). 
+There is only a fat arrow function definition (`=>`) which has very different behavior for from the CoffeeScript magic with the function context (`this` variable). 
 
 Also there are some nuances around syntax sugar for fat arrow functions.
 <!--CoffeeScript `(arg) ->` == es6 `(arg) =>`-->
@@ -77,7 +77,7 @@ app.get('posts', (req, res) => {
 ````
 
 Braces are required in multi-line functions because unlike CoffeeScript, JavaScript does not care about indentation. Be really careful when you
-change a one line function to a multi-line to reinclude the the `return`
+change a one line function to a multi-line to re-include the the `return`
 keyword.
 
 ### ES6 Module Pattern
@@ -149,7 +149,7 @@ To get es6 working in nodejs, we can install a package `npm i es6-module-loader 
 
 Note you should tack on the `catch()` promise function so you can see stack errors. 
 
-Once we setup our `boostrap.js` file, we no longer start our app with `node index.js` but instead use:
+Once we setup our `bootstrap.js` file, we no longer start our app with `node index.js` but instead use:
 
     node boostrap.js
 
@@ -190,7 +190,7 @@ The AirPair project stucture looks partially like:
 bootstrap.js
 app.js
 ````
-You'll notice, 3 differnt "bootstrap" files. Each of these files runs the
+You'll notice, 3 different "bootstrap" files. Each of these files runs the
 app with a different configuration / mode. 
 1. `mocha /test/server/bootstrap.coffee` runs the app in test mode outputting 
 mocha reporter results to the terminal. When mocha is finished the process
@@ -223,5 +223,5 @@ require('./app').run()  // fire up express and everything else
 I was super happy to be on the path to a nicer JavaScript. There were lots
 of things I learned over the last 12 months that I'm looking forward to
 sharing in a revision of this post soon. I still like writing my tests
-in CoffeeScript thoug :). There are some good middle grounds that work
+in CoffeeScript though :). There are some good middle grounds that work
 across both languages that can help context switching quite manageable.
