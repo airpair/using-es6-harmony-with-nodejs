@@ -215,7 +215,7 @@ require('./app').run()  // fire up express and everything else
 - - -
 
 
-### ECMAScript6 is a great start!
+## ECMAScript6 is a great start!
 
 I was super happy to be on the path to a nicer JavaScript. There were lots
 of things I learned over the last 12 months that I'm looking forward to
